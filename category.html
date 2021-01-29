@@ -1,0 +1,297 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="category_title"><a href="/{{ category.lower() }}/1">{{ category }} - {{ total_results }} resultados</a></h2>
+
+    <div class="filter-row"> <!-- SEARCH -->
+    <p>Refina tu busqueda:</p>
+        <form action="" method="get">
+            <div class="word_search">
+                {% if qsearchw == '' %}
+                    <input class="input_search" maxlength="128" name="qsearchw" placeholder="Buscar" type="text">
+                {% else %}
+                    <input class="input_search" maxlength="128" name="qsearchw" placeholder="Buscar" type="text" value="{{ qsearchw_w }}">
+                {% endif %}
+            </div>
+            <div class="price_search">
+                <span>Precio:</span>
+                <input class="input_minprice" name="qminprice" type="number" value="{{ qminprice }}" required>
+                -
+                <input class="input_maxprice" name="qmaxprice" type="number" value="{{ qmaxprice }}" required>
+            </div>
+            <div class="by_search">
+                <select name="orderby">
+                    {% if order == '' %}
+                        <option selected value="rank">Por popularidad</option>
+                        <option value="low_first">Precio menor a mayor</option>
+                        <option value="high_first">Precio mayor a menor</option>
+                    {% elif order == 'rank'%}
+                        <option selected value="rank">Por popularidad</option>
+                        <option value="low_first">Precio menor a mayor</option>
+                        <option value="high_first">Precio mayor a menor</option>
+                    {% elif order == 'low_first'%}
+                        <option  value="rank">Por popularidad</option>
+                        <option selected value="low_first">Precio menor a mayor</option>
+                        <option value="high_first">Precio mayor a menor</option>
+                    {% elif order == 'high_first'%}
+                        <option  value="rank">Por popularidad</option>
+                        <option value="low_first">Precio menor a mayor</option>
+                        <option selected value="high_first">Precio mayor a menor</option>
+                    {% else %}
+                        <option selected value="rank">Por popularidad</option>
+                        <option value="low_first">Precio menor a mayor</option>
+                        <option value="high_first">Precio mayor a menor</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div class="stores-check-search">
+                <br>
+                {% for store in stores %}
+                    {% if store in stores_selected %}
+                        <input checked class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}">
+                        <label class="stores-check-label" for="{{ store }}">{{ store }}</label>
+                    {% else %}
+                        <input class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}">
+                        <label class="stores-check-label" for="{{ store }}">{{ store }}</label>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <input class="submit_search" type="submit" value="Filtrar">
+        </form>
+    </div> <!-- SEARCH -->
+
+    {% if data['url'].count() == 0  or max_pag_plus_1 == '' %}
+        <br>
+        <div class="alert alert-danger" role="alert">
+            Producto no encontrado
+        </div>
+    {% else %}
+        <nav aria-label="" class="nav_pagination"> <!-- PAGINATION -->
+          <ul class="pagination justify-content-center">
+            {% for li in range(1,max_pag_plus_1) %}
+                <!-- ACTIVE PAGE -->
+                {% if li == page_num %}
+                    <form class="_pagination active_pagination" action="" method="get">
+                        <input type="number" name="qpage" value="{{ li }}" style="display: none;">
+                        <input maxlength="128" name="qsearchw" type="text" value="{{ qsearchw_w }}" style="display: none;">
+                        <input name="qminprice" type="number" value="{{ qminprice }}" style="display: none;">
+                        <input name="qmaxprice" type="number" value="{{ qmaxprice }}" style="display: none;">
+                        <input name="orderby" type="number" value="{{ qmaxprice }}" style="display: none;">
+                        <select style="display: none;" name="orderby">
+                            {% if order == '' %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'rank'%}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'low_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option selected value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'high_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option selected value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% else %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% endif %}
+                        </select>
+                        {% for store in stores %}
+                            {% if store in stores_selected %}
+                                <input checked class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                            {% else %}
+                                <input class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                            {% endif %}
+                        {% endfor %}
+                        <input class="pag_item" type="submit" value="{{ li }}">
+                    </form>
+                <!-- OTHER PAGES -->
+                {% elif page_num <= li <= page_num + 2 or page_num >= li >= page_num - 2 or li >= max_pag_plus_1 - 1 or li == 1 %}
+                    <form class="_pagination" action="" method="get">
+                        <input type="number" name="qpage" value="{{ li }}" style="display: none;">
+                        <input maxlength="128" name="qsearchw" type="text" value="{{ qsearchw_w }}" style="display: none;">
+                        <input name="qminprice" type="number" value="{{ qminprice }}" style="display: none;">
+                        <input name="qmaxprice" type="number" value="{{ qmaxprice }}" style="display: none;">
+                        <input class="pag_item" type="submit" value="{{ li }}">
+                        <select style="display: none;" name="orderby">
+                            {% if order == '' %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'rank'%}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'low_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option selected value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'high_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option selected value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% else %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% endif %}
+                        </select>
+                        {% for store in stores %}
+                            {% if store in stores_selected %}
+                                <div>
+                                    <input checked class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                    <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                                </div>
+                            {% else %}
+                                <div>
+                                    <input class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                    <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </form>
+                {% endif %}
+            {% endfor %}
+          </ul>
+        </nav> <!-- PAGINATION -->
+
+        <div class="dropdown d-flex justify-content-end top_filter" style="z-index: 3000">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tienda Online
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for store in founded_stor%}
+                  <a class="dropdown-item" href="#{{store}}">{{ store }} ({{ amount_result_p_store[store] }})</a>
+              {% endfor %}
+          </div>
+        </div>
+
+        {% for store_data in filter_store %}
+            <!-- PRODUCTS -->
+            <h2 class="category_title" id="{{ store_data['page'][0] }}">{{ store_data['page'][0] }} ({{ amount_result_p_store[store_data['page'][0]] }})</h2>
+                <div class="items_container">
+
+                    {% for row in store_data.itertuples() %}
+                        <div class="item">
+                            <div class="item_store"><h5>{{ row.page }}</h5></div>
+                            <div class="div_img">
+                                <img src="{{ row.img }}" alt="image-product">
+                            </div>
+                            <p class="title_item"><a target="_blank"  href="{{ row.url }}">{{ row.title }}</a></p>
+                            <div class="div_prices">
+                                {% if row.old_int_price == row.offer_int_price%}
+                                    <span class="offer_price"><strong>S/ {{ row.offer_int_price }}</strong></span>
+                                {% else %}
+                                    <span class="old_price">S/ {{ row.old_int_price }}</span>
+                                    <span class="offer_price"><strong>S/ {{ row.offer_int_price }}</strong></span>
+                                {% endif %}
+                            </div>
+                            <a class="button_item_a" href="{{ row.url }}" target="_blank"><button class="button_item">Ver Producto</button></a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            <!-- PRODUCTS -->
+        {% endfor %}
+
+        <nav aria-label="" class="nav_pagination"> <!-- PAGINATION -->
+          <ul class="pagination justify-content-center">
+            {% for li in range(1,max_pag_plus_1) %}
+                <!-- ACTIVE PAGE -->
+                {% if li == page_num %}
+                    <form class="_pagination active_pagination" action="" method="get">
+                        <input type="number" name="qpage" value="{{ li }}" style="display: none;">
+                        <input maxlength="128" name="qsearchw" type="text" value="{{ qsearchw_w }}" style="display: none;">
+                        <input name="qminprice" type="number" value="{{ qminprice }}" style="display: none;">
+                        <input name="qmaxprice" type="number" value="{{ qmaxprice }}" style="display: none;">
+                        <input name="orderby" type="number" value="{{ qmaxprice }}" style="display: none;">
+                        <select style="display: none;" name="orderby">
+                            {% if order == '' %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'rank'%}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'low_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option selected value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'high_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option selected value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% else %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% endif %}
+                        </select>
+                        {% for store in stores %}
+                            {% if store in stores_selected %}
+                                <input checked class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                            {% else %}
+                                <input class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                            {% endif %}
+                        {% endfor %}
+                        <input class="pag_item" type="submit" value="{{ li }}">
+                    </form>
+                <!-- OTHER PAGES -->
+                {% elif page_num <= li <= page_num + 2 or page_num >= li >= page_num - 2 or li >= max_pag_plus_1 - 1 or li == 1 %}
+                    <form class="_pagination" action="" method="get">
+                        <input type="number" name="qpage" value="{{ li }}" style="display: none;">
+                        <input maxlength="128" name="qsearchw" type="text" value="{{ qsearchw_w }}" style="display: none;">
+                        <input name="qminprice" type="number" value="{{ qminprice }}" style="display: none;">
+                        <input name="qmaxprice" type="number" value="{{ qmaxprice }}" style="display: none;">
+                        <input class="pag_item" type="submit" value="{{ li }}">
+                        <select style="display: none;" name="orderby">
+                            {% if order == '' %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'rank'%}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'low_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option selected value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% elif order == 'high_first'%}
+                                <option  value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option selected value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% else %}
+                                <option selected value="rank" style="display: none;">Por popularidad</option>
+                                <option value="low_first" style="display: none;">Precio menor a mayor</option>
+                                <option value="high_first" style="display: none;">Precio mayor a menor</option>
+                            {% endif %}
+                        </select>
+                        {% for store in stores %}
+                            {% if store in stores_selected %}
+                                <input checked class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                            {% else %}
+                                <input class="stores-check-input" type="checkbox" name="{{ store }}" value="{{ store }}" id="{{ store }}" style="display: none;">
+                                <label class="stores-check-label" for="{{ store }}" style="display: none;">{{ store }}</label>
+                            {% endif %}
+                        {% endfor %}
+                    </form>
+                {% endif %}
+            {% endfor %}
+          </ul>
+        </nav> <!-- PAGINATION -->
+    {% endif %}
+{% endblock %}
+
+
+
