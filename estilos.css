@@ -139,7 +139,7 @@ header {
 	width: 100%;
 }
 header nav {
-	background: #1e0253;
+	background: var(--primary-bg);
 	z-index:1000;
 	max-width: 100%;
 	width:100%;
@@ -892,7 +892,26 @@ header nav ul li a:hover{
 
 /* INPUT DE BUSQUEDA DEL COMIENZO */
 .index_main__title {
-	margin-top: 1.5rem;
+	font-size: 2rem;
+	display: inline-block;
+	width: 250px;
+	margin-top: 2rem;
+	text-align: left;
+	padding-left: 45px;
+}
+
+.phone__image_container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.phone__image {
+	width: 320px;
+}
+
+.phone__image img {
+	width: 100%;
 }
 .index_form{
 	width: 80%;
