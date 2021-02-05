@@ -10,6 +10,20 @@
 font-family: "Poetsen One";
 src: url("PoetsenOne-Regular.ttf");
 }
+
+:root {
+	/* COLORES PRINCIPALES FONDO*/
+	--primary-bg: #21242D;
+	--secundary-bg: #362B3A;
+	/* Color de Fuente */
+	--font-color: #F3F3F3;
+
+	/* Color de botones: */
+	--button: #54B36D;
+	--button-hover: #77D28F; 
+
+}
+
 html {
   	min-height: 100%;
  	position: relative;	}
