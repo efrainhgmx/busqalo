@@ -28,10 +28,12 @@ html {
   	min-height: 100%;
  	position: relative;	}
 body {
+	background: linear-gradient(var(--primary-bg), var(--secundary-bg));
  	margin-bottom: 500px;
  	padding-left: 10%;
 	padding-right: 10%;
 	font-family:"Nunito Sans";
+	color: var(--font-color);
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -112,7 +114,7 @@ tr th, tr td{
 	color: #662d91;
 }
 .menu_down{
-	background-color: #1e0253;
+	background-color: var(--primary-bg);
 	width: 46.7656px;
 	padding: 5px;
 	margin-right: 0;
@@ -124,7 +126,7 @@ tr th, tr td{
 .menu_bar {
 	display:none;
 	font-family: "Poetsen One";
-	background: #1e0253;
+	background-color: var(--primary-bg);
 	z-index: 2000;
 }
 .menu-bar a{
@@ -889,14 +891,14 @@ header nav ul li a:hover{
 /* ANIMACION DE CARGANDO LOW PRICES*/
 
 /* INPUT DE BUSQUEDA DEL COMIENZO */
+.index_main__title {
+	margin-top: 1.5rem;
+}
 .index_form{
-	-webkit-border-radius: 15px;
-	        border-radius: 15px;
-	border: 2px #a37eba solid;
 	width: 80%;
 	margin: 50px 10% 0 10%;
 	padding: 50px 10% 50px 10%;
-	background-color: #6f4a8e;
+	
 }
 .index_title{
 	width: 100%;
@@ -916,9 +918,6 @@ header nav ul li a:hover{
 	height: 50px;
 	padding: 3px 7px;
 	margin-top: 15px;
-	-webkit-border-radius: 8px;
-	        border-radius: 8px;
-	border: 1px #662d91 solid;
 	font-size: 15px;
 	font-family: "Open Sans", serif;
 }
@@ -938,9 +937,6 @@ header nav ul li a:hover{
 	height: 50px;
 	padding: 3px 7px;
 	margin: 15px 0;
-	-webkit-border-radius: 8px;
-	        border-radius: 8px;
-	border: 1px #662d91 solid;
 	font-size: 15px;
 	font-family: "Open Sans", serif;
 }
@@ -948,14 +944,15 @@ header nav ul li a:hover{
     outline: none !important;
 }
 .index_search{
-	width: 100%;
+	width: 120px;
 	margin-top: 15px;
 	padding: 8px 0;
 	text-align: center;
 	font-family: "Roboto Mono", serif;
 	-webkit-border-radius: 8px;
 	        border-radius: 8px;
-	background-color: #212121;
+	background-color: var(--button);
+	box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
 	font-size: 20px;
 	color: white;
 	border: transparent;
