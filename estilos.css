@@ -910,7 +910,7 @@ header nav ul li a:hover{
 	font-size: 2rem;
 	display: inline-block;
 	width: 250px;
-	margin-top: 2rem;
+	margin: 2rem 0;
 	text-align: left;
 	padding-left: 45px;
 }
@@ -1040,7 +1040,7 @@ header nav ul li a:hover{
 @media screen and (min-width: 767px) {
 	main {
 		width: 90%;
-		margin: 0 auto;
+		margin: 25px auto;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 25%  25% 1fr;
@@ -1055,7 +1055,7 @@ header nav ul li a:hover{
 	}
 
 	.index_form {
-		width: 250px;
+		width: 400px;
 		margin: 0;
 		padding: 0;
 	}
