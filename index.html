@@ -105,6 +105,8 @@
                         <li><a href="/tablet">Tablet</a></li>
                     </ul>
                 </li>
+                <li><a href="/faq" target="_blank">Preguntas Frecuentes</a></li>
+                <li><a href="#">Acerca de nosotros</a></li>
             <!--
                 {% if 'chrome.exe' in session %}
                     <li><a href="/mi-perfil" class="user_active">{{ session['edge.exe'] }}</a></li>
@@ -121,27 +123,34 @@
 <!-- {% extends 'base.html' %}
 {% block content %} -->
     
-<section>
-  <h1 class="index_main__title">Los mejores precios en un solo lugar</h1>
-  <div class="phone__image_container">
-    <figure class="phone__image">
-        <img src="./assets/mobile-busqlo.png" alt="Todo lo que buscas en un solo lugar">
-    </figure>
-  </div>
-    <form class="index_form" action="/buscar" method="get">
-        <p class="index_title" >¿Qué quieres comprar hoy?</p>
-        <input class="input_search_index" maxlength="128" name="qsearchw" placeholder="Huawei P30 Pro" type="text" required>
-        <div class="flex_prices_index" >
-            <input class="input_search_index_50" maxlength="128" name="qminprice" placeholder="Precio mínimo" type="number" required>
-            <input class="input_search_index_50" maxlength="128" name="qmaxprice" placeholder="Precio máximo" type="number" required>
-        </div>
-        <input class="index_search" type="submit" value="Buscar">
-        <p class="index_description" ><strong>Encuentra los productos de estas tiendas online, en un solo lugar.: </strong><br>La Curacao, Saga Falabella, Hiraoka, Linio, Mercado Libre, Metro,
-            Oechsle, Ripley, Smartphones Perú, Sodimac, Loginstore, Plaza Vea, Tiendas EFE, Juntoz</p>
-    </form>
-</section>
-<h2 class="category_title" style="margin-left: 10%; margin-right: 10%; width: 80%;">Más populares</h2>
-<section class="regular slider responsive">
+<main>
+  <section>
+    <h1 class="index_main__title">Los mejores precios en un solo lugar</h1>
+    <div class="phone__image_container block-image">
+      <figure class="phone__image">
+          <img src="./assets/mobile-busqlo.png" alt="Todo lo que buscas en un solo lugar">
+      </figure>
+    </div>
+      <form class="index_form" action="/buscar" method="get">
+          <p class="index_title" >¿Qué quieres comprar hoy?</p>
+          <input class="input_search_index" maxlength="128" name="qsearchw" placeholder="Huawei P30 Pro" type="text" required>
+          <div class="flex_prices_index" >
+              <input class="input_search_index_50" maxlength="128" name="qminprice" placeholder="Precio mínimo" type="number" required>
+              <input class="input_search_index_50" maxlength="128" name="qmaxprice" placeholder="Precio máximo" type="number" required>
+          </div>
+          <input class="index_search" type="submit" value="Buscar">
+          <p class="index_description" ><strong>Encuentra los productos de estas tiendas online, en un solo lugar.: </strong><br>La Curacao, Saga Falabella, Hiraoka, Linio, Mercado Libre, Metro,
+              Oechsle, Ripley, Smartphones Perú, Sodimac, Loginstore, Plaza Vea, Tiendas EFE, Juntoz</p>
+      </form>
+  </section>
+
+  <figure class="phone__image block-image--second">
+    <img src="./assets/mobile-busqlo.png" alt="Todo lo que buscas en un solo lugar">
+  </figure>
+
+</main>
+<h2 class="category_title" style="margin-top: 75px; margin-left: 5%; margin-right: 5%; width: 80%;">Más populares</h2>
+< class="regular slider responsive">
     {% if data['url'].count() == 0 %}
         <div class="empty_index">Productos no disponibles..</div>
     {% else %}
@@ -165,19 +174,19 @@
         {% endfor %}
     {% endif %}
 
-</section>
+        </main>
 <footer class="footer">
   <div class="docs">
-      <a href="/faq" target="_blank">Preguntas Frecuentes</a>
-      <a href="#">Acerca de nosotros</a>
+      <a href="/faq" target="_blank">Created by Diego</a>
+      <a href="https://github.com/efrainhgmx/" target="_blank" rel="noopener">Design by Efraín Hernández</a>
   </div>
   <div class="redes">
-      <a href="https://www.facebook.com/Crapi-Shop-102647298201955/" target="_blank"><img src="../../static/images/facebook.png"></a>
-      <a href="https://www.youtube.com/" target="_blank"><img src="../../static/images/youtube.png"></a>
-      <a href="#"><img src="../../static/images/instagram.png"></a>
-  </div>
-  <div>
-      <h6 class="copyright"> © Copyright 2020 CRAPISHOP - Todos los derechos reservados</h6>
+      <p class="copyright">&COPY; Copyright 2020 CRAPISHOP - Todos los derechos reservados</p>
+      <div class="redes__links">
+        <a href="https://www.facebook.com/Crapi-Shop-102647298201955/" target="_blank"><img src="./assets/icons/facebook.svg" alt="facebook"></a>
+        <a href="https://www.youtube.com/" target="_blank"><img src="./assets/icons/youtube.svg" alt="YouTube"></a>
+        <a href="#"><img src="./assets/icons/instagram.svg" alt="Instagram"></a>
+      </div>
   </div>
 </footer>
 <script type="text/javascript">
