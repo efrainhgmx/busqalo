@@ -35,6 +35,8 @@ body {
 	font-family:"Nunito Sans";
 	color: var(--font-color);
 }
+
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -285,9 +287,14 @@ header nav ul li a:hover{
 	margin: 0;
 }
 .footer a{
-	text-decoration: underline;
 	color: var(--font-color);
 }
+
+.footer a:hover {
+	text-decoration: underline;
+	color: #8C8C8C;
+}
+
 .footer div{
 	margin: 5px 0;	}
 /*FOOTER*/

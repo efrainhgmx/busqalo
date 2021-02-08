@@ -1,6 +1,88 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Busqalo — Encuentra las mejores oferas en productos de tecnología</title>
+    <!-- META TAG -->
+        <!-- Primary Meta Tags -->
+        <title>Meta Tags — Preview, Edit and Generate</title>
+        <meta name="title" content="Busqalo — Encuentra los mejores precios en productos de tecnología y más.">
+        <meta name="description" content="Encuentra todos los productos en un solo lugar, compara y compra. Usa nuestras distintas herramientas para tu compra.">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.crapishop.com/">
+        <meta property="og:title" content="Busqalo — Encuentra los mejores precios en productos de tecnología y más.">
+        <meta property="og:description" content="Encuentra todos los productos en un solo lugar, compara y compra. Usa nuestras distintas herramientas para tu compra.">
+        <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1PxMMyPtCBJXsdpCbet0wOCTtD3JQpv0o">
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://www.crapishop.com/">
+        <meta property="twitter:title" content="Busqalo — Encuentra los mejores precios en productos de tecnología y más.">
+        <meta property="twitter:description" content="Encuentra todos los productos en un solo lugar, compara y compra. Usa nuestras distintas herramientas para tu compra.">
+        <meta property="twitter:image" content="https://drive.google.com/uc?export=view&id=1PxMMyPtCBJXsdpCbet0wOCTtD3JQpv0o">
+    <!-- META TAG -->
+    <!--  FAVICON -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!--  FAVICON -->
+    <!--  VIEWPORT -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
+    <!--  VIEWPORT -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Roboto+Mono&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed|Fredoka+One|Open+Sans|Sriracha&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Cormorant|Lemonada|Merienda|LatoWebLight|Source+Code+Pro|Spectral|Sriracha&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap CSS-->
+    <!-- LOCAL CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="../../../../../../static/css/estilos.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../../../../../static/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="../../../../../../static/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <!-- LOCAL CSS -->
+    <!-- Bootstrap JS-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS-->
+    <!-- JS LOCAL-->
+    <script src="static/js/main.js"></script>
+    <script src="static/js/slick.js" type="text/javascript" charset="utf-8"></script>
+    <!-- JS LOCAL-->
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- JQuery -->
+    <!-- Slick slider -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- Slick slider -->
+    <style type="text/css">
+      .slider {
+          width: 80%;
+          margin: 20px auto;
+      }
+      .slick-slide {
+          margin: 0px 20px;
+      }
+      .slick-slide img {
+           width: auto;
+           max-width: calc(100% - 10px);
+      }
+      .slick-prev:before,
+      .slick-next:before {
+           color: black;
+      }
+      .slick-slide {
+           transition: all ease-in-out .3s;
+      }
+    </style>
+</head>
 
-{% block content %}
+
+<!-- {% extends 'base.html' %}
+{% block content %} -->
 <h2 class="category_title"><a href="/{{ category.lower() }}/1">{{ category }} - {{ total_results }} resultados</a></h2>
 
     <div class="filter-row"> <!-- SEARCH -->
@@ -290,6 +372,20 @@
             {% endfor %}
           </ul>
         </nav> <!-- PAGINATION -->
+        <footer class="footer">
+            <div class="docs">
+                <a href="https://github.com/diegomedflo/" target="_blank" rel="noopener">Created by Diego</a>
+                <a href="https://github.com/efrainhgmx/" target="_blank" rel="noopener">Design by Efraín Hernández</a>
+            </div>
+            <div class="redes">
+                <p class="copyright">&COPY; Copyright 2020 CRAPISHOP - Todos los derechos reservados</p>
+                <div class="redes__links">
+                  <a href="https://www.facebook.com/Crapi-Shop-102647298201955/" target="_blank"><img src="./assets/icons/facebook.svg" alt="facebook"></a>
+                  <a href="https://www.youtube.com/" target="_blank"><img src="./assets/icons/youtube.svg" alt="YouTube"></a>
+                  <a href="#"><img src="./assets/icons/instagram.svg" alt="Instagram"></a>
+                </div>
+            </div>
+          </footer>
     {% endif %}
 {% endblock %}
 
