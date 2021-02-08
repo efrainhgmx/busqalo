@@ -930,6 +930,11 @@ header nav ul li a:hover{
 	width: 100%;
 	border-radius: 0 0 25px 25px;
 }
+
+#phone__image_second {
+	margin-left: 45px;
+}
+
 .index_form{
 	width: 80%;
 	margin: 50px 10% 0 10%;
@@ -1044,6 +1049,7 @@ header nav ul li a:hover{
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 25%  25% 1fr;
+		align-items: center;
 	}
 
 	.index_main__title {
