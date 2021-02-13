@@ -1056,7 +1056,12 @@ header nav ul li a:hover{
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 25%  25% 1fr;
-		align-items: center;
+	}
+
+	#phone__image_second {
+		align-self: flex-start;
+		padding-top: 15px;
+		justify-self: center;
 	}
 
 	.index_main__title {
