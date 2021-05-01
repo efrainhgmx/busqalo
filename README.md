@@ -7,3 +7,5 @@ Esto te permite identificar los lugares y fechas cuando el producto que buscaste
 Entre más lo usas, más exacto es!
 
 Actualizado con modo oscuro
+
+![Busqalo App](./assets/busqalo.png)
