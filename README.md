@@ -8,4 +8,6 @@ Entre más lo usas, más exacto es!
 
 Actualizado con modo oscuro
 
+Proyecto 100% Responsive
+
 ![Busqalo App](./assets/busqalo.png)
